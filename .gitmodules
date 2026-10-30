@@ -2,3 +2,7 @@
 	path = estivi-tx
 	url = https://github.com/fluoroom/estivi-tx.git
 	branch = main
+[submodule "estivi-rx"]
+	path = estivi-rx
+	url = https://github.com/fluoroom/estivi-rx.git
+	branch = main
