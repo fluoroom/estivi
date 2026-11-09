@@ -22,7 +22,7 @@ Slow-scan television (SSTV) sends still images over a narrowband voice channel, 
 |---|---|---|
 | **[estivi-tx](https://github.com/fluoroom/estivi-tx)** | The station. A desktop app that holds the channel, draws the grid, renders every SSTV mode, keys the radio, answers CW and DTMF, logs each transmission, and sends a one-off picture outside the grid. | Rust, Slint |
 | **[estivi-rx](https://github.com/fluoroom/estivi-rx)** | The listener. One web page that demodulates radio audio in the browser, decodes the pictures and the AX.25 guide, and keeps a timeline, a calendar, and saved PNGs. It installs as an app and remembers everything between visits. | JavaScript, Web Audio, nginx |
-| **[estivi-webpage](https://github.com/fluoroom/estivi-webpage)** | The front door. The project's public landing page, just getting started. | — |
+| **[estivi-webpage](https://github.com/fluoroom/estivi-webpage)** | The front door. The project's public landing page, in English and Spanish: a simulated receiver, the sample week grid, a mode explorer, and a gallery of both ends. | HTML, CSS, JavaScript, nginx |
 
 This repository is the umbrella. It pins the three projects as submodules at known commits and holds no code of its own; each submodule keeps its own history, releases, and documentation.
 
@@ -65,6 +65,18 @@ docker compose up -d --build
 Browsers only expose the microphone over HTTPS or on localhost, so put a TLS terminator in front when you deploy it. After the first visit the receiver also opens offline.
 
 If you cloned without `--recurse-submodules`, fill the submodules in with `git submodule update --init --recursive`.
+
+### The landing page
+
+The landing page is the front door: a simulated receiver decode, the sample week grid, the SSTV mode explorer, and screenshots of both ends, in English and Spanish. It is plain HTML, CSS, and JavaScript, served by nginx:
+
+```sh
+cd estivi-webpage
+docker compose up -d --build
+# open http://localhost:8087
+```
+
+The English page is at `/` and the Spanish one at `/es/`.
 
 ## What the transmitter does
 
@@ -135,4 +147,5 @@ npm test
 - [Transmitter manual](https://github.com/fluoroom/estivi-tx/blob/main/docs/MANUAL.md) — the long version.
 - [AX.25 interface](https://github.com/fluoroom/estivi-tx/blob/main/AX25.md) — the exact bytes and text a client reads.
 - [Receiver README](https://github.com/fluoroom/estivi-rx#readme) — the page tour, the decoder, and storage. Also in [Spanish](https://github.com/fluoroom/estivi-rx/blob/main/README_ES.md).
+- [Landing page README](https://github.com/fluoroom/estivi-webpage#readme) — the page tour, the language switch, deployment, and the nginx policy.
 - [This README in Spanish](README_ES.md).

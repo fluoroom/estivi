@@ -22,7 +22,7 @@ La televisión de barrido lento (SSTV) manda imágenes fijas por un canal de voz
 |---|---|---|
 | **[estivi-tx](https://github.com/fluoroom/estivi-tx)** | La estación. Una app de escritorio que sostiene el canal, dibuja la grilla, renderiza todos los modos SSTV, acciona la radio, responde CW y DTMF, registra cada transmisión y manda una imagen suelta fuera de la grilla. | Rust, Slint |
 | **[estivi-rx](https://github.com/fluoroom/estivi-rx)** | El receptor. Una página web que demodula el audio de la radio en el navegador, decodifica las imágenes y la guía AX.25, y mantiene una línea de tiempo, un calendario y PNG guardados. Se instala como app y se acuerda de todo entre visitas. | JavaScript, Web Audio, nginx |
-| **[estivi-webpage](https://github.com/fluoroom/estivi-webpage)** | La puerta de entrada. La página pública del proyecto, recién arrancando. | — |
+| **[estivi-webpage](https://github.com/fluoroom/estivi-webpage)** | La puerta de entrada. La página pública del proyecto, en inglés y español: un receptor simulado, la grilla semanal de ejemplo, un explorador de modos y una galería de las dos puntas. | HTML, CSS, JavaScript, nginx |
 
 Este repositorio es el paraguas del proyecto. Fija los tres proyectos como submódulos en commits conocidos y no tiene código propio; cada submódulo mantiene su historia, sus releases y su documentación.
 
@@ -65,6 +65,18 @@ docker compose up -d --build
 Los navegadores solo dan el micrófono por HTTPS o en localhost, así que poné un terminador TLS delante cuando lo despliegues. Después de la primera visita, el receptor también abre sin conexión.
 
 Si clonaste sin `--recurse-submodules`, completá los submódulos con `git submodule update --init --recursive`.
+
+### La página web
+
+La página web es la puerta de entrada: una decodificación simulada en el receptor, la grilla semanal de ejemplo, el explorador de modos SSTV y capturas de las dos puntas, en inglés y español. Es HTML, CSS y JavaScript puros, servida por nginx:
+
+```sh
+cd estivi-webpage
+docker compose up -d --build
+# abrí http://localhost:8087
+```
+
+La página en inglés está en `/` y la española en `/es/`.
 
 ## Qué hace el transmisor
 
@@ -135,4 +147,5 @@ npm test
 - [Manual del transmisor](https://github.com/fluoroom/estivi-tx/blob/main/docs/MANUAL.md) — la versión larga, en inglés.
 - [Interfaz AX.25](https://github.com/fluoroom/estivi-tx/blob/main/AX25.md) — los bytes y el texto exactos que lee un cliente.
 - [README del receptor](https://github.com/fluoroom/estivi-rx#readme) — el recorrido de la página, el decodificador y el almacenamiento. También en [inglés](https://github.com/fluoroom/estivi-rx/blob/main/README.md).
+- [README de la página web](https://github.com/fluoroom/estivi-webpage#readme) — el recorrido, el selector de idioma, el despliegue y la política de nginx.
 - [Este README en inglés](README.md).
