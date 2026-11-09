@@ -6,3 +6,7 @@
 	path = estivi-rx
 	url = https://github.com/fluoroom/estivi-rx.git
 	branch = main
+[submodule "estivi-webpage"]
+	path = estivi-webpage
+	url = https://github.com/fluoroom/estivi-webpage.git
+	branch = main
